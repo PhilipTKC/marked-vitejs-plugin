@@ -1,0 +1,22 @@
+{
+  "name": "marked-vitejs-plugin",
+  "version": "0.1.0",
+  "description": "Use MarkedJS in vite",
+  "main": "./dist/index.js",
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "build": "npm run clean && tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/marked": "^5.0.0",
+    "@types/node": "^20.2.1",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  }
+}
