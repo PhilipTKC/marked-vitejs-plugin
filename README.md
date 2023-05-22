@@ -2,11 +2,7 @@
 
 Use [Marked](https://github.com/markedjs/marked) in Vite.
 
-Created for personal use, but feel free to use it.
-
-## Why?
-
-Replace Markdown It with MarkedJS for [Quick Start](https://github.com/PhilipTKC/quick-start).
+Created for personal use ([Quick Start](https://github.com/PhilipTKC/quick-start)), but feel free to use it.
 
 ## Usage
 
