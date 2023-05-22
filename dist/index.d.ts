@@ -1,4 +1,5 @@
-import { Plugin, PluginOptions } from './interfaces';
+import { Plugin } from "vite";
+import { PluginOptions } from './interfaces';
 export { Include } from "./enums";
 export { PluginOptions };
 declare const _default: (pluginOptions: PluginOptions) => Plugin;

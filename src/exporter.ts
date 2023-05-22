@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import { TOCRenderer } from "./toc-renderer";
 
 import { Include } from "./enums";
-import { Mappings, ModuleExport, PluginOptions } from "./interfaces";
+import { Mappings, PluginOptions } from "./interfaces";
 
 export class Exporter {
 
@@ -18,7 +18,7 @@ export class Exporter {
         this.includes = include;
     }
 
-    transform(code: string, id: string): ModuleExport | undefined {
+    transform(code: string, id: string) {
         if (this.shouldTransformFile(id, ".md")) {
             const { content, data: attributes } = matter(code);
 

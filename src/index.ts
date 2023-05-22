@@ -1,5 +1,7 @@
+import { Plugin } from "vite";
+
 import { Exporter } from './exporter';
-import { Plugin, PluginOptions } from './interfaces';
+import { PluginOptions } from './interfaces';
 
 export { Include } from "./enums";
 

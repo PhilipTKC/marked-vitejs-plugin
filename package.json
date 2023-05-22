@@ -14,7 +14,8 @@
     "@types/marked": "^5.0.0",
     "@types/node": "^20.2.1",
     "rimraf": "^5.0.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "vite": "^4.3.8"
   },
   "dependencies": {
     "gray-matter": "^4.0.3"
