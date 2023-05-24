@@ -1,18 +1,16 @@
 import { Plugin } from "vite";
 
-import { Exporter } from './exporter';
+import { MarkdownTransformer } from './transformer';
 import { PluginOptions } from './interfaces';
 
 export { Include } from "./enums";
 
-export { PluginOptions }
-
 export default (pluginOptions: PluginOptions): Plugin => {
-    const exporter = new Exporter(pluginOptions);
+    const transformer = new MarkdownTransformer(pluginOptions);
 
     return {
         name: 'marked-vite-plugin',
         enforce: 'pre',
-        transform: (code: string, id: string) => exporter.transform(code, id),
+        transform: (code: string, id: string) => transformer.transform(code, id),
     };
 }

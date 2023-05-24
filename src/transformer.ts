@@ -1,22 +1,12 @@
-import { marked as M } from "marked";
 import matter from "gray-matter";
 
 import { TOCRenderer } from "./toc-renderer";
-
 import { Include } from "./enums";
 import { Mappings, PluginOptions } from "./interfaces";
 
-export class Exporter {
+export class MarkdownTransformer {
 
-    private marked: typeof M;
-
-    private includes: Include[];
-
-    constructor(pluginOptions: PluginOptions) {
-        const { marked, include } = pluginOptions;
-        this.marked = marked;
-        this.includes = include;
-    }
+    constructor(private pluginOptions: PluginOptions) { }
 
     transform(code: string, id: string) {
         if (this.shouldTransformFile(id, ".md")) {
@@ -33,26 +23,26 @@ export class Exporter {
     private generateModuleCode(attributes: unknown, content: string) {
 
         const toc = new TOCRenderer();
-        const renderer = new this.marked.Renderer();
-        const slugger = new this.marked.Slugger();
+        const renderer = new this.pluginOptions.marked.Renderer();
+        const slugger = new this.pluginOptions.marked.Slugger();
 
-        if (this.includes.includes(Include.TOC)) {
+        if (this.pluginOptions.include.includes(Include.TOC)) {
             renderer.heading = (text, level, raw) => toc.renderHeading(text, level, raw, slugger);
         }
 
         let renderedHTML;
 
-        if (this.includes.includes(Include.HTML)) {
-            renderedHTML = this.marked.parse(content, { renderer });
+        if (this.pluginOptions.include.includes(Include.HTML)) {
+            renderedHTML = this.pluginOptions.marked.parse(content, { renderer });
         }
 
         const includeMappings = {
-            [Include.YAML]: `export const ${[Include.YAML]} = ${JSON.stringify(attributes)};`,
-            [Include.TOC]: `export const ${[Include.TOC]} = ${JSON.stringify(toc.returnTOC())};`,
-            [Include.HTML]: `export const ${[Include.HTML]} = ${JSON.stringify(renderedHTML)};`,
+            [Include.YAML]: `export const ${Include.YAML} = ${JSON.stringify(attributes)};`,
+            [Include.TOC]: `export const ${Include.TOC} = ${JSON.stringify(toc.returnTOC())};`,
+            [Include.HTML]: `export const ${Include.HTML} = ${JSON.stringify(renderedHTML)};`,
         } as Mappings;
 
-        const moduleCode = this.includes
+        const moduleCode = this.pluginOptions.include
             .filter((option) => includeMappings.hasOwnProperty(option))
             .map((option) => includeMappings[option])
             .join('\n');
