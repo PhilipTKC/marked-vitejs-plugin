@@ -2,8 +2,6 @@
 
 Use [Marked](https://github.com/markedjs/marked) in Vite.
 
-Created for personal use for ([Quick Start](https://github.com/PhilipTKC/quick-start)). Not published.
-
 ## Usage
 
 ```js
